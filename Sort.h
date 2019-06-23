@@ -24,6 +24,7 @@ public:
     void bubbleSort();
     void heapSort();
     void insertSort();
+    bool isSort();
 private:
     int *array;
     int size;

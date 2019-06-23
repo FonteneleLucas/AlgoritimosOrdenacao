@@ -12,6 +12,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "Sort.h"
 
@@ -66,7 +67,7 @@ void Sort::bubbleSort() {
         }
 
     }
-//    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
+    //    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
 
 void Sort::max_heapify(int *a, int i, int tamanho) {
@@ -106,12 +107,12 @@ void Sort::removeOrdena(int tamanho) {
     array[0] = array[tamanho - 1];
     array[tamanho - 1] = 0;
     tamanho--;
-    
+
     max_heapify(array, 0, tamanho);
     array[tamanho] = prioridade;
 }
 
-void Sort::buildHeapMax(){
+void Sort::buildHeapMax() {
     for (int i = ((size / 2) - 1); i >= 0; i--) {
         max_heapify(array, i, size);
     }
@@ -119,11 +120,11 @@ void Sort::buildHeapMax(){
 
 void Sort::ordenaArray() {
     for (int i = 0; i < size; i++) {
-        removeOrdena(size-i);
+        removeOrdena(size - i);
     }
 }
 
-void Sort::heapSort(){
+void Sort::heapSort() {
     buildHeapMax();
     ordenaArray();
 }
@@ -136,27 +137,39 @@ void Sort::show() {
 
 }
 
-void Sort::insertSort() { 
+void Sort::insertSort() {
     int *p = array;
     int tamanho = size;
-    int comp=0;
-    for (int x = 1; x <tamanho; x++) {
-        int aux=p[x];
-        int i = x-1;
+    int comp = 0;
+    for (int x = 1; x < tamanho; x++) {
+        int aux = p[x];
+        int i = x - 1;
         //printf("%d > %d ???\n",p[i],aux);
         while (i >= 0 && p[i] > aux) {
             comp++;
-//            printf("%d° %d > %d\n",comp,p[i],aux);
-            p[i+1] = p[i];
+            //            printf("%d° %d > %d\n",comp,p[i],aux);
+            p[i + 1] = p[i];
             //comp++;
             i--;
         }
-        
-        p[i+1]=aux;   
+
+        p[i + 1] = aux;
         //show(p,tamanho);
 
     }
     //printf("comp %d \n",comp);
+}
+
+bool Sort::isSort() {
+    for (int i = 0; i < size - 1; i++) {
+        if ((array[i + 1] - array[i]) <= 0) {
+            return false;
+        }
+
+    }
+
+    return true;
+
 }
 
 

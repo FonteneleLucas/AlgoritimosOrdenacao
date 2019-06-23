@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "Sort.h" 
 
@@ -34,6 +35,11 @@ int main() {
     array3.show();
     printf("\nArray4: ");
     array4.show();
+    
+    printf("\nArray 1 Is sorted: %s", (array1.isSort() == true ? "True" : "False"));
+    printf("\nArray 2 Is sorted: %s", (array2.isSort() == true ? "True" : "False"));
+    printf("\nArray 3 Is sorted: %s", (array3.isSort() == true ? "True" : "False"));
+    printf("\nArray 4 Is sorted: %s", (array4.isSort() == true ? "True" : "False"));
 
     return 0;
 }
