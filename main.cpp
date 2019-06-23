@@ -15,8 +15,6 @@ int cSize = sizeof (c) / sizeof (c[0]);
 int d[] = {20, 59, 40, 41, 46, 49, 13, 12, 28, 14, 65, 19, 88, 35, 18, 15, 37, 82, 5, 4, 44, 38, 69, 80, 87, 7, 78, 76, 75, 23};
 int dSize = sizeof (d) / sizeof (d[0]);
 
-
-
 int main() {
     Sort array1(a, aSize);
     Sort array2(b, bSize);
@@ -25,10 +23,9 @@ int main() {
     
     array1.bubbleSort();
     array2.selectionSort();
-    array3.heapSort();
+    array3.insertSort();
     array4.heapSort();
-    
-    
+
     printf("\nArray1: ");
     array1.show();
     printf("\nArray2: ");
@@ -37,9 +34,6 @@ int main() {
     array3.show();
     printf("\nArray4: ");
     array4.show();
-    
-    
-
 
     return 0;
 }

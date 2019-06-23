@@ -23,6 +23,7 @@ public:
     void selectionSort();
     void bubbleSort();
     void heapSort();
+    void insertSort();
 private:
     int *array;
     int size;

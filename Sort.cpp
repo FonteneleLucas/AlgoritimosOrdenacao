@@ -117,12 +117,6 @@ void Sort::buildHeapMax(){
     }
 }
 
-//void Sort::ordenaArray(){
-//    for (int i = 0; i < (sizeof (array) / sizeof (array[0])); i++) {
-//        removeOrdena((sizeof (array) / sizeof (array[0])) - i);
-//    }
-//}
-
 void Sort::ordenaArray() {
     for (int i = 0; i < size; i++) {
         removeOrdena(size-i);
@@ -140,6 +134,29 @@ void Sort::show() {
     }
     printf("\n");
 
+}
+
+void Sort::insertSort() { 
+    int *p = array;
+    int tamanho = size;
+    int comp=0;
+    for (int x = 1; x <tamanho; x++) {
+        int aux=p[x];
+        int i = x-1;
+        //printf("%d > %d ???\n",p[i],aux);
+        while (i >= 0 && p[i] > aux) {
+            comp++;
+//            printf("%d° %d > %d\n",comp,p[i],aux);
+            p[i+1] = p[i];
+            //comp++;
+            i--;
+        }
+        
+        p[i+1]=aux;   
+        //show(p,tamanho);
+
+    }
+    //printf("comp %d \n",comp);
 }
 
 
