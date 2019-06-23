@@ -69,6 +69,71 @@ void Sort::bubbleSort() {
 //    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
 
+void Sort::max_heapify(int *a, int i, int tamanho) {
+    int esq, dir, maior, aux;
+
+    esq = (2 * i) + 1;
+    dir = (2 * i) + 2;
+    maior = i;
+
+    if (esq < tamanho) {
+        if (a[esq] > a[i]) {
+            maior = esq;
+        }
+    }
+
+    if (dir < tamanho) {
+        if (a[esq] > a[i] || a[dir] > a[i]) {
+            if (a[esq] > a[dir]) {
+                maior = esq;
+            } else {
+                maior = dir;
+            }
+        }
+    }
+
+    if (maior != i) {
+        aux = a[i];
+        a[i] = a[maior];
+        a[maior] = aux;
+        max_heapify(a, maior, tamanho);
+    }
+}
+
+void Sort::removeOrdena(int tamanho) {
+
+    int prioridade = array[0];
+    array[0] = array[tamanho - 1];
+    array[tamanho - 1] = 0;
+    tamanho--;
+    
+    max_heapify(array, 0, tamanho);
+    array[tamanho] = prioridade;
+}
+
+void Sort::buildHeapMax(){
+    for (int i = ((size / 2) - 1); i >= 0; i--) {
+        max_heapify(array, i, size);
+    }
+}
+
+//void Sort::ordenaArray(){
+//    for (int i = 0; i < (sizeof (array) / sizeof (array[0])); i++) {
+//        removeOrdena((sizeof (array) / sizeof (array[0])) - i);
+//    }
+//}
+
+void Sort::ordenaArray() {
+    for (int i = 0; i < size; i++) {
+        removeOrdena(size-i);
+    }
+}
+
+void Sort::heapSort(){
+    buildHeapMax();
+    ordenaArray();
+}
+
 void Sort::show() {
     for (int i = 0; i < this->size; i++) {
         printf("%d\t", *(array + i));

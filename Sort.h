@@ -22,10 +22,15 @@ public:
     void show();
     void selectionSort();
     void bubbleSort();
-
+    void heapSort();
 private:
     int *array;
     int size;
+    
+    void max_heapify(int *a, int i, int tamanho);
+    void removeOrdena(int tamanho);
+    void buildHeapMax();
+    void ordenaArray();
 };
 
 #endif /* SORT_H */

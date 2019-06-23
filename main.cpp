@@ -1,124 +1,45 @@
 
 #include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
+
 #include "Sort.h" 
 
-using namespace std;
+int a[] = {77, 80, 78, 53, 37, 51, 55, 73, 86, 25, 18, 69, 42, 64, 44, 22, 39, 46, 32, 28, 30, 36, 19, 70, 47, 27, 5, 88, 10, 79};
+int aSize = sizeof (a) / sizeof (a[0]);
 
-//deve adicionar com 0 na posicao array[0];
-int tree[] = {52, 62, 57, 84, 60, 8, 10, 39, 28, 44, 51, 72, 49, 30, 34, 3, 20, 37, 41, 47, 87, 67, 83, 68, 23, 42, 61, 53, 13, 45, 46, 63, 17, 64, 31, 14, 16, 79, 35, 80};
-int sizeTree = sizeof (tree) / sizeof (tree[0]);
+int b[] = {50, 76, 68, 25, 40, 87, 35, 77, 74, 17, 2, 34, 48, 75, 82, 21, 83, 56, 9, 72, 69, 41, 63, 59, 80, 28, 31, 22, 52, 7};
+int bSize = sizeof (b) / sizeof (b[0]);
+
+int c[] = {80, 55, 20, 65, 27, 85, 46, 90, 60, 6, 12, 14, 59, 9, 83, 11, 30, 21, 54, 37, 35, 18, 24, 7, 74, 38, 86, 2, 49, 82};
+int cSize = sizeof (c) / sizeof (c[0]);
+
+int d[] = {20, 59, 40, 41, 46, 49, 13, 12, 28, 14, 65, 19, 88, 35, 18, 15, 37, 82, 5, 4, 44, 38, 69, 80, 87, 7, 78, 76, 75, 23};
+int dSize = sizeof (d) / sizeof (d[0]);
 
 
-/*void heapfy(int array[], int i, int tamanho) {
-
-    int pai = (i - 1) / 2;
-    int esq = (2 * i) + 1;
-    int dir = (2 * i) + 2;
-    int maior = i;
-    int aux;
-
-    if (esq < tamanho) {
-        if (array[esq] > array[i]) {
-            maior = esq;
-        }
-    }
-
-    if (dir < tamanho) {
-        if (array[esq] > array[pai] || array[dir] > array[pai]) {
-            if (array[esq] > array[dir]) {
-                maior = esq;
-            } else {
-                maior = dir;
-            }
-        }
-    }
-
-    //    printf("Esq: %d (%d); Pai: %d (%d); Dir: %d (%d)        ", esq, array[esq], pai, array[pai], dir, array[dir]);
-
-    if (maior != i) {
-        //        printf("maior != i\n");
-        aux = array[pai];
-        array[pai] = array[maior];
-        array[maior] = aux;
-        heapfy(array, maior, tamanho);
-    }
-
-}*/
-
-void max_heapify(int *a, int i, int tamanho) {
-    int esq, dir, maior, aux;
-
-    esq = (2 * i) + 1;
-    dir = (2 * i) + 2;
-    maior = i;
-
-    if (esq < tamanho) {
-        if (a[esq] > a[i]) {
-            maior = esq;
-        }
-    }
-
-    if (dir < tamanho) {
-        if (a[esq] > a[i] || a[dir] > a[i]) {
-            if (a[esq] > a[dir]) {
-                maior = esq;
-            } else {
-                maior = dir;
-            }
-        }
-    }
-
-    if (maior != i) {
-        //        printf("maior != i\n");
-        aux = a[i];
-        a[i] = a[maior];
-        a[maior] = aux;
-        max_heapify(a, maior, tamanho);
-    }
-}
-
-void removeOrdena(int tamanho) {
-
-    int prioridade = tree[0];
-    tree[0] = tree[tamanho - 1];
-    tree[tamanho - 1] = 0;
-    //    ordenado[tamanho - 1] = prioridade;
-//    printf("Remove: %d\n",prioridade);
-
-    tamanho--;
-    //    heapfy(tree, 1, tamanho);
-    max_heapify(tree, 0, tamanho);
-    tree[tamanho] = prioridade;
-//    for (int i = 1; i < tamanho; i++) {
-//        printf("%d\t", tree[i]);
-//    }
-//    printf("\n");
-}
 
 int main() {
-    for (int i = ((sizeTree / 2) - 1); i >= 0; i--) {
-        max_heapify(tree, i, sizeTree);
-        //        heapfy(tree, i, sizeTree);
-    }
-
-    printf("MaxHeap: \n");
-    for (int i = 0; i < sizeof (tree) / sizeof (tree[0]); i++) {
-        printf("%d\t", tree[i]);
-    }
-
-    printf("\n\n");
-
-    //Remove e ordena
-    for (int i = 0; i < (sizeof (tree) / sizeof (tree[0])); i++) {
-        removeOrdena((sizeof (tree) / sizeof (tree[0])) - i);
-    }
+    Sort array1(a, aSize);
+    Sort array2(b, bSize);
+    Sort array3(c, cSize);
+    Sort array4(d, dSize);
     
-    printf("Ordenado: \n");
-    for (int i = 0; i < sizeof (tree) / sizeof (tree[0]); i++) {
-        printf("%d, ", tree[i]);
-    }
+    array1.bubbleSort();
+    array2.selectionSort();
+    array3.heapSort();
+    array4.heapSort();
+    
+    
+    printf("\nArray1: ");
+    array1.show();
+    printf("\nArray2: ");
+    array2.show();
+    printf("\nArray3: ");
+    array3.show();
+    printf("\nArray4: ");
+    array4.show();
+    
+    
+
 
     return 0;
 }
