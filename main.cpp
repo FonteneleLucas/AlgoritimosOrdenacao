@@ -7,26 +7,25 @@
 using namespace std;
 
 //deve adicionar com 0 na posicao array[0];
-int tree[] = {0, 5, 12, 64, 1, 37, 90, 91, 97};
-int sizeTree = sizeof(tree)/sizeof(tree[0]);
+int tree[] = {52, 62, 57, 84, 60, 8, 10, 39, 28, 44, 51, 72, 49, 30, 34, 3, 20, 37, 41, 47, 87, 67, 83, 68, 23, 42, 61, 53, 13, 45, 46, 63, 17, 64, 31, 14, 16, 79, 35, 80};
+int sizeTree = sizeof (tree) / sizeof (tree[0]);
 
-//int ordenado[sizeof (tree) / sizeof (tree[0])];
 
-void heapfy(int array[], int i, int tamanho) {
+/*void heapfy(int array[], int i, int tamanho) {
 
-    int pai = i;
-    int esq = 2 * i;
-    int dir = (2 * i) + 1;
+    int pai = (i - 1) / 2;
+    int esq = (2 * i) + 1;
+    int dir = (2 * i) + 2;
     int maior = i;
     int aux;
 
-    if (esq <= tamanho) {
+    if (esq < tamanho) {
         if (array[esq] > array[i]) {
             maior = esq;
         }
     }
 
-    if (dir <= tamanho) {
+    if (dir < tamanho) {
         if (array[esq] > array[pai] || array[dir] > array[pai]) {
             if (array[esq] > array[dir]) {
                 maior = esq;
@@ -46,26 +45,29 @@ void heapfy(int array[], int i, int tamanho) {
         heapfy(array, maior, tamanho);
     }
 
-}
+}*/
 
-void max_heapify2(int *a, int i, int tamanho) {
+void max_heapify(int *a, int i, int tamanho) {
     int esq, dir, maior, aux;
 
-    esq = 2 * i;
-    dir = (2 * i) + 1;
+    esq = (2 * i) + 1;
+    dir = (2 * i) + 2;
     maior = i;
 
-    if (esq <= tamanho) {
+    if (esq < tamanho) {
         if (a[esq] > a[i]) {
             maior = esq;
         }
     }
 
-    if (dir <= tamanho) {
-        if (a[esq] >= a[dir] && a[esq] > a[i]) {
-            maior = esq;
-        } else if (a[dir] >= a[esq] && a[dir] > a[i])
-            maior = dir;
+    if (dir < tamanho) {
+        if (a[esq] > a[i] || a[dir] > a[i]) {
+            if (a[esq] > a[dir]) {
+                maior = esq;
+            } else {
+                maior = dir;
+            }
+        }
     }
 
     if (maior != i) {
@@ -73,48 +75,49 @@ void max_heapify2(int *a, int i, int tamanho) {
         aux = a[i];
         a[i] = a[maior];
         a[maior] = aux;
-        max_heapify2(a, maior, tamanho);
+        max_heapify(a, maior, tamanho);
     }
 }
 
 void removeOrdena(int tamanho) {
 
-    int prioridade = tree[1];
-    tree[1] = tree[tamanho - 1];
+    int prioridade = tree[0];
+    tree[0] = tree[tamanho - 1];
     tree[tamanho - 1] = 0;
     //    ordenado[tamanho - 1] = prioridade;
+//    printf("Remove: %d\n",prioridade);
 
     tamanho--;
-    heapfy(tree, 1, tamanho);
-    //    max_heapify2(tree, 1, tamanho);
+    //    heapfy(tree, 1, tamanho);
+    max_heapify(tree, 0, tamanho);
     tree[tamanho] = prioridade;
-    //    for (int i = 1; i < tamanho; i++) {
-    //        printf("%d\t", tree[i]);
-    //    }
-    //    printf("\n");
+//    for (int i = 1; i < tamanho; i++) {
+//        printf("%d\t", tree[i]);
+//    }
+//    printf("\n");
 }
 
 int main() {
-    for (int i = sizeTree / 2; i >= 1; i--) {
-        //        max_heapify2(tree, i, sizeTree);
-        heapfy(tree, i, sizeTree);
+    for (int i = ((sizeTree / 2) - 1); i >= 0; i--) {
+        max_heapify(tree, i, sizeTree);
+        //        heapfy(tree, i, sizeTree);
     }
 
     printf("MaxHeap: \n");
-    for (int i = 1; i < sizeof (tree) / sizeof (tree[0]); i++) {
+    for (int i = 0; i < sizeof (tree) / sizeof (tree[0]); i++) {
         printf("%d\t", tree[i]);
     }
 
     printf("\n\n");
 
-    for (int i = 0; i < (sizeof (tree) / sizeof (tree[0])) - 1; i++) {
+    //Remove e ordena
+    for (int i = 0; i < (sizeof (tree) / sizeof (tree[0])); i++) {
         removeOrdena((sizeof (tree) / sizeof (tree[0])) - i);
-
     }
-
+    
     printf("Ordenado: \n");
-    for (int i = 1; i < sizeof (tree) / sizeof (tree[0]); i++) {
-        printf("%d\t", tree[i]);
+    for (int i = 0; i < sizeof (tree) / sizeof (tree[0]); i++) {
+        printf("%d, ", tree[i]);
     }
 
     return 0;
