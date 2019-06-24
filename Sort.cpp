@@ -10,21 +10,27 @@
  * 
  * Created on June 21, 2019, 12:33 PM
  */
-
+#include <iostream>
+#include <ctime>
+#include <ratio>
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <chrono> 
+#include <time.h>
 #include "Sort.h"
+using namespace std;
 
 Sort::Sort(int arg[], int size) {
     array = arg;
     this->size = size;
+
 }
 
 Sort::~Sort() {
 }
 
-void Sort::selectionSort() {
+double Sort::selectionSort() {
+   
     int min = 0;
     int aux = 0;
     int trocas = 0;
@@ -42,9 +48,11 @@ void Sort::selectionSort() {
         array[min] = aux;
         trocas++;
     }
+
+    return 0.2;
 }
 
-void Sort::bubbleSort() {
+double Sort::bubbleSort() {
     int *p = array;
     int tamanho = size;
     int aux;
@@ -67,6 +75,7 @@ void Sort::bubbleSort() {
         }
 
     }
+    return 0.2;
     //    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
 
@@ -124,9 +133,13 @@ void Sort::ordenaArray() {
     }
 }
 
-void Sort::heapSort() {
+double Sort::heapSort() {
+
     buildHeapMax();
     ordenaArray();
+    
+    return 0.2;
+
 }
 
 void Sort::show() {
@@ -137,7 +150,7 @@ void Sort::show() {
 
 }
 
-void Sort::insertSort() {
+double Sort::insertSort() {
     int *p = array;
     int tamanho = size;
     int comp = 0;
@@ -157,6 +170,8 @@ void Sort::insertSort() {
         //show(p,tamanho);
 
     }
+  
+    return 0.2;
     //printf("comp %d \n",comp);
 }
 

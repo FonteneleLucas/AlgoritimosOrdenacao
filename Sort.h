@@ -20,10 +20,10 @@ public:
     virtual ~Sort();
 
     void show();
-    void selectionSort();
-    void bubbleSort();
-    void heapSort();
-    void insertSort();
+    double selectionSort();
+    double bubbleSort();
+    double heapSort();
+    double  insertSort();
     bool isSort();
 private:
     int *array;

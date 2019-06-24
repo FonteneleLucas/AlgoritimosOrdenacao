@@ -15,12 +15,13 @@
 #define BUILDARRAY_H
 
 class BuildArray {
-public:
-    BuildArray(int tamanho);
+public: 
+    BuildArray(int tamanho, int _tipo);
     BuildArray(const BuildArray& orig);
     virtual ~BuildArray();
 
     void show();
+    int NAleatorio(int maxi);
     void generator();
     inline 
     int * getArray(){
@@ -29,6 +30,7 @@ public:
 private:
     int * array;
     int size;
+    int tipo;
 
 };
 

@@ -16,8 +16,9 @@
 #include <ctime>
 #include <cstdlib> 
 
-BuildArray::BuildArray(int tamanho) {
+BuildArray::BuildArray(int tamanho,int _tipo) {
     size = tamanho;
+    tipo=_tipo;
     generator();
 }
 
@@ -26,7 +27,10 @@ BuildArray::BuildArray(const BuildArray& orig) {
 
 BuildArray::~BuildArray() {
 }
-
+int BuildArray::NAleatorio(int maxi){
+    int y = rand() % maxi;
+    return y;
+}
 void BuildArray::show() {
     //    printf("Tamanho: %d; ", size);
     for (int i = 0; i < this->size; i++) {
@@ -37,10 +41,28 @@ void BuildArray::show() {
 }
 
 void BuildArray::generator() {
-    srand(time(NULL));
-    array = new int[this->size];
-    for (int i = 0; i < size; i++) {
-        int r = (rand() % size) + 1;
-        array[i] = r;
+    srand(10);
+    for (int x = 0; x < size; x++) {
+        if (tipo == 1) {
+            array[x] = x + 1;
+        } else if (tipo == 2) {
+            array[x] = size - x;
+        } else if (tipo == 3) {
+
+            bool add = true;
+            int num = NAleatorio(size * 10);
+            for (int k = 0; k < x; k++) {
+                if (num == array[k]) {
+
+                    x--;
+                    k = x;
+                    add = false;
+                }
+            }
+            if (add) {
+                array[x] = num;
+            }
+
+        }
     }
 }
