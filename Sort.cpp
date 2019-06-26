@@ -40,17 +40,20 @@ int Sort::selectionSort() {
     
     for (int i = 0; i < size - 1; i++) {
         min = i;
-
+        
         for (int j = i + 1; j < size; j++) {
             if (array[min] > array[j]) {
                 min = j;
+                
             }
         }
-
+        if(array[min]!=array[i]){
+        trocas++;
         aux = array[i];
         array[i] = array[min];
         array[min] = aux;
-        trocas++;
+        }
+        
     }
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(stop - start);

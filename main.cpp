@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-    int tamanho = 1000;
+    int tamanho = 10;
     int type = 2;
     BuildArray teste(tamanho, type);
     BuildArray teste2(tamanho, type);
@@ -31,18 +31,18 @@ int main() {
     printf("tamanho : %d tipo : %d\n", tamanho, type);
     array1.selectionSort();
     printf(" trocas %d\n", array1.getTrocas());
-    array2.bubbleSort();
-    printf(" trocas %d\n", array2.getTrocas());
-    array3.insertSort();
-    printf(" trocas %d\n", array3.getTrocas());
-    array4.heapSort();
-    printf(" trocas %d\n", array4.getTrocas());
+   // array2.bubbleSort();
+//    printf(" trocas %d\n", array2.getTrocas());
+//    array3.insertSort();
+//    printf(" trocas %d\n", array3.getTrocas());
+//    array4.heapSort();
+//    printf(" trocas %d\n", array4.getTrocas());
 
 
 
 
 
-   /* printf("Ordenados:\n");
+   printf("Ordenados:\n");
     printf("\nArray1: ");
     array1.show();
     printf("\nArray2: ");
@@ -50,7 +50,7 @@ int main() {
     printf("\nArray3: ");
     array3.show();
     printf("\nArray4: ");
-    array4.show();*/
+    array4.show();
 
     //    printf("\nArray 1 Is sorted: %s", (array1.isSort() == true ? "True" : "False"));
     //    printf("\nArray 2 Is sorted: %s", (array2.isSort() == true ? "True" : "False"));
