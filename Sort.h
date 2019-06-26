@@ -20,15 +20,21 @@ public:
     virtual ~Sort();
 
     void show();
-    double selectionSort();
-    double bubbleSort();
-    double heapSort();
-    double  insertSort();
+    int selectionSort();
+    int bubbleSort();
+    int heapSort();
+    int  insertSort();
     bool isSort();
+    inline
+    int getTrocas() const {
+        return trocas;
+    }
 private:
+    int trocas;
     int *array;
     int size;
     
+
     void max_heapify(int *a, int i, int tamanho);
     void removeOrdena(int tamanho);
     void buildHeapMax();

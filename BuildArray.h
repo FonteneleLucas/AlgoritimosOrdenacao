@@ -21,7 +21,7 @@ public:
     virtual ~BuildArray();
 
     void show();
-    int NAleatorio(int maxi);
+    long int NAleatorio(long maxi);
     void generator();
     inline 
     int * getArray(){

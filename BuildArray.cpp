@@ -17,9 +17,11 @@
 #include <cstdlib> 
 
 BuildArray::BuildArray(int tamanho,int _tipo) {
+     
     size = tamanho;
     tipo=_tipo;
     generator();
+     
 }
 
 BuildArray::BuildArray(const BuildArray& orig) {
@@ -27,7 +29,7 @@ BuildArray::BuildArray(const BuildArray& orig) {
 
 BuildArray::~BuildArray() {
 }
-int BuildArray::NAleatorio(int maxi){
+long int BuildArray::NAleatorio(long int maxi){
     int y = rand() % maxi;
     return y;
 }
@@ -41,9 +43,12 @@ void BuildArray::show() {
 }
 
 void BuildArray::generator() {
+    
     srand(10);
+    array = new int[this->size];
     for (int x = 0; x < size; x++) {
         if (tipo == 1) {
+            
             array[x] = x + 1;
         } else if (tipo == 2) {
             array[x] = size - x;

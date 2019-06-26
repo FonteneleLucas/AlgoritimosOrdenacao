@@ -18,9 +18,13 @@
 #include <chrono> 
 #include <time.h>
 #include "Sort.h"
+#include <bits/stdc++.h> 
+#include <sys/time.h> 
 using namespace std;
+using namespace std::chrono;
 
 Sort::Sort(int arg[], int size) {
+    trocas=0;
     array = arg;
     this->size = size;
 
@@ -29,11 +33,11 @@ Sort::Sort(int arg[], int size) {
 Sort::~Sort() {
 }
 
-double Sort::selectionSort() {
-   
+int Sort::selectionSort() {
+    auto start = high_resolution_clock::now();
     int min = 0;
     int aux = 0;
-    int trocas = 0;
+    
     for (int i = 0; i < size - 1; i++) {
         min = i;
 
@@ -48,16 +52,20 @@ double Sort::selectionSort() {
         array[min] = aux;
         trocas++;
     }
-
-    return 0.2;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Time SelectionSort: "
+            << duration.count() << " nanoseconds" << endl;
+    return 1;
 }
 
-double Sort::bubbleSort() {
+int Sort::bubbleSort() {
+    auto start = high_resolution_clock::now();
     int *p = array;
     int tamanho = size;
     int aux;
     int maior;
-    int trocas = 0;
+    
     int compara = 0;
     for (int x = 0; x < tamanho; x++) {
         //printf("x = %d \t",x);
@@ -75,13 +83,16 @@ double Sort::bubbleSort() {
         }
 
     }
-    return 0.2;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Time bubbleSort: "
+            << duration.count() << " nanoseconds" << endl;
+    return 1;
     //    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
 
 void Sort::max_heapify(int *a, int i, int tamanho) {
     int esq, dir, maior, aux;
-
     esq = (2 * i) + 1;
     dir = (2 * i) + 2;
     maior = i;
@@ -106,6 +117,7 @@ void Sort::max_heapify(int *a, int i, int tamanho) {
         aux = a[i];
         a[i] = a[maior];
         a[maior] = aux;
+        trocas++;
         max_heapify(a, maior, tamanho);
     }
 }
@@ -133,12 +145,16 @@ void Sort::ordenaArray() {
     }
 }
 
-double Sort::heapSort() {
-
+int Sort::heapSort() {
+    
+    auto start = high_resolution_clock::now();
     buildHeapMax();
     ordenaArray();
-    
-    return 0.2;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Time heapSort: "
+            << duration.count() << " nanoseconds" << endl;
+    return 1;
 
 }
 
@@ -150,10 +166,12 @@ void Sort::show() {
 
 }
 
-double Sort::insertSort() {
+int Sort::insertSort() {
+    auto start = high_resolution_clock::now();
     int *p = array;
     int tamanho = size;
     int comp = 0;
+    
     for (int x = 1; x < tamanho; x++) {
         int aux = p[x];
         int i = x - 1;
@@ -162,16 +180,19 @@ double Sort::insertSort() {
             comp++;
             //            printf("%d° %d > %d\n",comp,p[i],aux);
             p[i + 1] = p[i];
-            //comp++;
+            trocas++;
             i--;
         }
-
+        
         p[i + 1] = aux;
         //show(p,tamanho);
 
     }
-  
-    return 0.2;
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Time insertionSort: "
+            << duration.count() << " nanoseconds" << endl;
+    return 1;
     //printf("comp %d \n",comp);
 }
 
